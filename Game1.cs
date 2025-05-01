@@ -62,7 +62,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(bombTexture, bombRect, Color.White);
-            _spriteBatch.DrawString(bombFont, seconds.ToString("00:0"), new Vector2(270, 200), Color.Black);         
+            _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);         
 
             _spriteBatch.End();
 
