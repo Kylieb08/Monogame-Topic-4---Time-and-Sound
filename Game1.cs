@@ -14,6 +14,7 @@ namespace Monogame_Topic_4___Time_and_Sound
         Texture2D bombTexture;
         float seconds;
         SoundEffect explosion;
+        MouseState mouseState;
 
         public Game1()
         {
@@ -51,6 +52,13 @@ namespace Monogame_Topic_4___Time_and_Sound
                 Exit();
 
             // TODO: Add your update logic here
+            mouseState = Mouse.GetState();
+
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                seconds = 0;
+            }
+
             seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (seconds > 10)
