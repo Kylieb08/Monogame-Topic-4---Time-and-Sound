@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,6 +13,7 @@ namespace Monogame_Topic_4___Time_and_Sound
         Rectangle bombRect;
         Texture2D bombTexture;
         float seconds;
+        SoundEffect explosion;
 
         public Game1()
         {
@@ -40,6 +42,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             // TODO: use this.Content to load your game content here
             bombTexture = Content.Load<Texture2D>("bomb");
             bombFont = Content.Load<SpriteFont>("bombFont");
+            explosion = Content.Load<SoundEffect>("explosion");
         }
 
         protected override void Update(GameTime gameTime)
@@ -49,6 +52,12 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             // TODO: Add your update logic here
             seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (seconds > 10)
+            {
+                explosion.Play();
+                seconds = 0;
+            }
 
             base.Update(gameTime);
         }
