@@ -9,6 +9,8 @@ namespace Monogame_Topic_4___Time_and_Sound
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         SpriteFont bombFont;
+        Rectangle bombRect;
+        Texture2D bombTexture;
 
         public Game1()
         {
@@ -20,6 +22,10 @@ namespace Monogame_Topic_4___Time_and_Sound
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 500;
+
+            bombRect = new Rectangle(50, 50, 700, 400);
 
             base.Initialize();
         }
@@ -29,6 +35,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            bombTexture = Content.Load<Texture2D>("bomb");
         }
 
         protected override void Update(GameTime gameTime)
