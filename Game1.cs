@@ -11,6 +11,7 @@ namespace Monogame_Topic_4___Time_and_Sound
         SpriteFont bombFont;
         Rectangle bombRect;
         Texture2D bombTexture;
+        float seconds;
 
         public Game1()
         {
@@ -27,6 +28,8 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             bombRect = new Rectangle(50, 50, 700, 400);
 
+            seconds = 0;
+
             base.Initialize();
         }
 
@@ -36,6 +39,7 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             // TODO: use this.Content to load your game content here
             bombTexture = Content.Load<Texture2D>("bomb");
+            bombFont = Content.Load<SpriteFont>("bombFont");
         }
 
         protected override void Update(GameTime gameTime)
@@ -44,6 +48,11 @@ namespace Monogame_Topic_4___Time_and_Sound
                 Exit();
 
             // TODO: Add your update logic here
+            seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (seconds > 10)
+            {
+                seconds = 0f;
+            }
 
             base.Update(gameTime);
         }
@@ -53,6 +62,13 @@ namespace Monogame_Topic_4___Time_and_Sound
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(bombTexture, bombRect, Color.White);
+            _spriteBatch.DrawString(bombFont, seconds.ToString("00.0"), new Vector2(270, 200), Color.Black);         
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
