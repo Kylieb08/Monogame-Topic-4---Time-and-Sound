@@ -8,6 +8,7 @@ namespace Monogame_Topic_4___Time_and_Sound
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        SpriteFont bombFont;
 
         public Game1()
         {

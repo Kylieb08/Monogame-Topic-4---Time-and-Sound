@@ -25,6 +25,13 @@
 /processorParam:TextureFormat=Color
 /build:bomb.png
 
+#begin bombFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:bombFont.spritefont
+
 #begin digitalFont.ttf
 /copy:digitalFont.ttf
 
@@ -45,11 +52,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Pliers.png
-
-#begin TimeFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:TimeFont.spritefont
 
