@@ -61,7 +61,7 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (seconds > 10)
+            if (seconds > 15)
             {
                 explosion.Play();
                 seconds = 0;
@@ -79,7 +79,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(bombTexture, bombRect, Color.White);
-            _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);         
+            _spriteBatch.DrawString(bombFont, (15 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);         
 
             _spriteBatch.End();
 
