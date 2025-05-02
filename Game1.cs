@@ -15,6 +15,7 @@ namespace Monogame_Topic_4___Time_and_Sound
         float seconds;
         SoundEffect explosion;
         MouseState mouseState;
+        bool exploded = false;
 
         public Game1()
         {
@@ -57,14 +58,17 @@ namespace Monogame_Topic_4___Time_and_Sound
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 seconds = 0;
+                exploded = false;
             }
 
-            seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (! exploded)
+                seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (seconds > 15)
+            if (seconds > 10)
             {
                 explosion.Play();
-                seconds = 0;
+                exploded = true;
+                seconds = 10;
             }
 
             base.Update(gameTime);
@@ -79,7 +83,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(bombTexture, bombRect, Color.White);
-            _spriteBatch.DrawString(bombFont, (15 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);         
+            _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);         
 
             _spriteBatch.End();
 
