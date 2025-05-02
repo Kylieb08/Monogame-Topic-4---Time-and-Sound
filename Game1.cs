@@ -11,7 +11,7 @@ namespace Monogame_Topic_4___Time_and_Sound
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         SpriteFont bombFont;
-        Rectangle bombRect, explosionRect;
+        Rectangle bombRect, explosionRect, redButtonRect;
         Texture2D bombTexture, explosionTexture;
         float seconds;
         SoundEffect explosion;
@@ -33,6 +33,7 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             bombRect = new Rectangle(50, 50, 700, 400);
             explosionRect = new Rectangle(0, 0, 800, 500);
+            redButtonRect = new Rectangle(253, 133, 10, 13);
 
             seconds = 0;
 
@@ -57,7 +58,7 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             if (exploded == true)
             {
-                Thread.Sleep(11000);
+                
                 Exit();
             }
 
@@ -67,8 +68,11 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                seconds = 0;
-                exploded = false;
+                if (redButtonRect.Contains(mouseState.Position))
+                {
+                    seconds = 0;
+                    exploded = false;
+                }
             }
 
             if (! exploded)
