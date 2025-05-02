@@ -15,6 +15,7 @@ namespace Monogame_Topic_4___Time_and_Sound
         Texture2D bombTexture, explosionTexture;
         float seconds;
         SoundEffect explosion;
+        SoundEffectInstance explosionInstance;
         MouseState mouseState;
         bool exploded = false;
 
@@ -48,6 +49,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             bombTexture = Content.Load<Texture2D>("bomb");
             bombFont = Content.Load<SpriteFont>("bombFont");
             explosion = Content.Load<SoundEffect>("explosion");
+            explosionInstance = explosion.CreateInstance();
             explosionTexture = Content.Load<Texture2D>("explosion no bg");
         }
 
@@ -56,9 +58,8 @@ namespace Monogame_Topic_4___Time_and_Sound
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (exploded == true)
+            if (exploded == true && explosionInstance.State == SoundState.Stopped)
             {
-                
                 Exit();
             }
 
@@ -75,12 +76,13 @@ namespace Monogame_Topic_4___Time_and_Sound
                 }
             }
 
-            if (! exploded)
+            if (!exploded)
                 seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (seconds > 10)
             {
-                explosion.Play();
+                explosionInstance.Play();
+                
                 exploded = true;
                 seconds = 10;
             }
