@@ -11,8 +11,8 @@ namespace Monogame_Topic_4___Time_and_Sound
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         SpriteFont bombFont;
-        Rectangle bombRect, explosionRect, redButtonRect;
-        Texture2D bombTexture, explosionTexture;
+        Rectangle bombRect, explosionRect, redButtonRect, pliersRect;
+        Texture2D bombTexture, explosionTexture, pliersTexture;
         float seconds;
         SoundEffect explosion;
         SoundEffectInstance explosionInstance;
@@ -35,6 +35,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             bombRect = new Rectangle(50, 50, 700, 400);
             explosionRect = new Rectangle(0, 0, 800, 500);
             redButtonRect = new Rectangle(253, 133, 10, 13);
+            pliersRect = new Rectangle(mouseState.X, mouseState.Y, 30, 30);
 
             seconds = 0;
 
@@ -51,6 +52,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             explosion = Content.Load<SoundEffect>("explosion");
             explosionInstance = explosion.CreateInstance();
             explosionTexture = Content.Load<Texture2D>("explosion no bg");
+            pliersTexture = Content.Load<Texture2D>("Pliers");
         }
 
         protected override void Update(GameTime gameTime)
@@ -102,6 +104,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             {
                 _spriteBatch.Draw(bombTexture, bombRect, Color.White);
                 _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);
+                _spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
             }
             else
             {
