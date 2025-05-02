@@ -35,6 +35,18 @@
 #begin digitalFont.ttf
 /copy:digitalFont.ttf
 
+#begin explosion no bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:explosion no bg.png
+
 #begin explosion.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

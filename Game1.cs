@@ -10,8 +10,8 @@ namespace Monogame_Topic_4___Time_and_Sound
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         SpriteFont bombFont;
-        Rectangle bombRect;
-        Texture2D bombTexture;
+        Rectangle bombRect, explosionRect;
+        Texture2D bombTexture, explosionTexture;
         float seconds;
         SoundEffect explosion;
         MouseState mouseState;
@@ -31,6 +31,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             _graphics.PreferredBackBufferHeight = 500;
 
             bombRect = new Rectangle(50, 50, 700, 400);
+            explosionRect = new Rectangle(0, 0, 800, 500);
 
             seconds = 0;
 
@@ -45,6 +46,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             bombTexture = Content.Load<Texture2D>("bomb");
             bombFont = Content.Load<SpriteFont>("bombFont");
             explosion = Content.Load<SoundEffect>("explosion");
+            explosionTexture = Content.Load<Texture2D>("explosion no bg");
         }
 
         protected override void Update(GameTime gameTime)
@@ -82,8 +84,15 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(bombTexture, bombRect, Color.White);
-            _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);         
+            if (!exploded)
+            {
+                _spriteBatch.Draw(bombTexture, bombRect, Color.White);
+                _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);
+            }
+            else
+            {
+                _spriteBatch.Draw(explosionTexture, explosionRect, Color.White);
+            }
 
             _spriteBatch.End();
 
