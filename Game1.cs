@@ -61,9 +61,7 @@ namespace Monogame_Topic_4___Time_and_Sound
                 Exit();
 
             if (exploded == true && explosionInstance.State == SoundState.Stopped)
-            {
                 Exit();
-            }
 
             // TODO: Add your update logic here
             mouseState = Mouse.GetState();
@@ -84,7 +82,6 @@ namespace Monogame_Topic_4___Time_and_Sound
             if (seconds > 10)
             {
                 explosionInstance.Play();
-                
                 exploded = true;
                 seconds = 10;
             }
