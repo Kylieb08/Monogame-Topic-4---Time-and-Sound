@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Threading;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -54,8 +55,15 @@ namespace Monogame_Topic_4___Time_and_Sound
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (exploded == true)
+            {
+                Thread.Sleep(11000);
+                Exit();
+            }
+
             // TODO: Add your update logic here
             mouseState = Mouse.GetState();
+            this.Window.Title = "x = " + mouseState.X + ", y = " + mouseState.Y;
 
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
