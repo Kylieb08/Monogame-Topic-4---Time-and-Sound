@@ -18,6 +18,8 @@ namespace Monogame_Topic_4___Time_and_Sound
         SoundEffectInstance explosionInstance;
         MouseState mouseState;
         bool exploded = false;
+        private Vector2 pos;
+
 
         public Game1()
         {
@@ -32,10 +34,12 @@ namespace Monogame_Topic_4___Time_and_Sound
             _graphics.PreferredBackBufferWidth = 800;
             _graphics.PreferredBackBufferHeight = 500;
 
+            IsMouseVisible = false;
+
             bombRect = new Rectangle(50, 50, 700, 400);
             explosionRect = new Rectangle(0, 0, 800, 500);
             redButtonRect = new Rectangle(253, 133, 10, 13);
-            pliersRect = new Rectangle(mouseState.X, mouseState.Y, 30, 30);
+            //pliersRect = new Rectangle(mouseState.X, mouseState.Y, 30, 30);
 
             seconds = 0;
 
@@ -65,6 +69,7 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             // TODO: Add your update logic here
             mouseState = Mouse.GetState();
+            pos = new Vector2(mouseState.X, mouseState.Y);
             this.Window.Title = "x = " + mouseState.X + ", y = " + mouseState.Y;
 
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -101,8 +106,9 @@ namespace Monogame_Topic_4___Time_and_Sound
             {
                 _spriteBatch.Draw(bombTexture, bombRect, Color.White);
                 _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);
-                //_spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
+                _spriteBatch.Draw(pliersTexture, pos, Color.White);
             }
+
             else
             {
                 _spriteBatch.Draw(explosionTexture, explosionRect, Color.White);
