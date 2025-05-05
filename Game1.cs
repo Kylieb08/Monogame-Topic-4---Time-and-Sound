@@ -39,7 +39,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             bombRect = new Rectangle(50, 50, 700, 400);
             explosionRect = new Rectangle(0, 0, 800, 500);
             redButtonRect = new Rectangle(253, 133, 10, 13);
-            //pliersRect = new Rectangle(mouseState.X, mouseState.Y, 30, 30);
+            pliersRect = new Rectangle(0, 0, 150, 125);
 
             seconds = 0;
 
@@ -69,7 +69,8 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             // TODO: Add your update logic here
             mouseState = Mouse.GetState();
-            pos = new Vector2(mouseState.X, mouseState.Y);
+            pliersRect.Location = mouseState.Position;
+
             this.Window.Title = "x = " + mouseState.X + ", y = " + mouseState.Y;
 
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -106,7 +107,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             {
                 _spriteBatch.Draw(bombTexture, bombRect, Color.White);
                 _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);
-                _spriteBatch.Draw(pliersTexture, pos, Color.White);
+                _spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
             }
 
             else
