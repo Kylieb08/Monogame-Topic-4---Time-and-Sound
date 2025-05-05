@@ -11,15 +11,13 @@ namespace Monogame_Topic_4___Time_and_Sound
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         SpriteFont bombFont;
-        Rectangle bombRect, explosionRect, redButtonRect, pliersRect;
+        Rectangle bombRect, explosionRect, redButtonRect, pliersRect, redWireRect;
         Texture2D bombTexture, explosionTexture, pliersTexture;
         float seconds;
         SoundEffect explosion;
         SoundEffectInstance explosionInstance;
         MouseState mouseState;
-        bool exploded = false;
-        private Vector2 pos;
-
+        bool exploded = false, disabled = false;
 
         public Game1()
         {
@@ -40,6 +38,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             explosionRect = new Rectangle(0, 0, 800, 500);
             redButtonRect = new Rectangle(253, 133, 10, 13);
             pliersRect = new Rectangle(0, 0, 150, 125);
+            redWireRect = new Rectangle(490, 180, 38, 15);
 
             seconds = 0;
 
@@ -80,9 +79,14 @@ namespace Monogame_Topic_4___Time_and_Sound
                     seconds = 0;
                     exploded = false;
                 }
+
+                if (redWireRect.Contains(mouseState.Position))
+                {
+                    disabled = true;
+                }
             }
 
-            if (!exploded)
+            if (!exploded && !disabled)
                 seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (seconds > 10)
