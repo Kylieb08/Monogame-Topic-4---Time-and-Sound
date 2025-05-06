@@ -39,7 +39,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             redButtonRect = new Rectangle(253, 133, 10, 13);
             pliersRect = new Rectangle(0, 0, 150, 125);
             redWireRect = new Rectangle(490, 180, 38, 15);
-            greenWireRect = new Rectangle(496, 157, 100, 22);
+            greenWireRect = new Rectangle(496, 147, 100, 32);
 
             seconds = 0;
 
@@ -95,8 +95,8 @@ namespace Monogame_Topic_4___Time_and_Sound
                }
             }
 
-            if (!exploded && !disabled)
-                seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //if (!exploded && !disabled)
+            //    seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (seconds > 10)
             {
@@ -120,6 +120,7 @@ namespace Monogame_Topic_4___Time_and_Sound
             {
                 _spriteBatch.Draw(bombTexture, bombRect, Color.White);
                 _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);
+                _spriteBatch.Draw(bombTexture, greenWireRect, Color.Black);
                 _spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
             }
 
@@ -130,7 +131,7 @@ namespace Monogame_Topic_4___Time_and_Sound
                 _spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
             }
 
-            else if (greenWireCut && !exploded && !disabled)
+            else if (greenWireCut == true && !exploded && !disabled)
             {
                 seconds = 8 + ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 _spriteBatch.Draw(bombGreenWireCutTexture, bombRect, Color.White);
