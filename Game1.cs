@@ -53,10 +53,13 @@ namespace Monogame_Topic_4___Time_and_Sound
             // TODO: use this.Content to load your game content here
             bombTexture = Content.Load<Texture2D>("bomb");
             bombFont = Content.Load<SpriteFont>("bombFont");
-            explosion = Content.Load<SoundEffect>("explosion");
-            explosionInstance = explosion.CreateInstance();
             explosionTexture = Content.Load<Texture2D>("explosion no bg");
             pliersTexture = Content.Load<Texture2D>("Pliers");
+
+            //Sound
+            explosion = Content.Load<SoundEffect>("explosion");
+            explosionInstance = explosion.CreateInstance();
+
             //Images for cut wires were made by Sarah
             bombRedWireCutTexture = Content.Load<Texture2D>("bombRedWireCut");
             bombGreenWireCutTexture = Content.Load<Texture2D>("bombGreenWireCut");
@@ -98,12 +101,16 @@ namespace Monogame_Topic_4___Time_and_Sound
             if (!exploded && !disabled)
                 seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (seconds > 10 && !greenWireCut)
+            if (!disabled)
             {
-                explosionInstance.Play();
-                exploded = true;
-                seconds = 10;
+                if (seconds > 10 || greenWireCut == true)
+                {
+                    explosionInstance.Play();
+                    exploded = true;
+                    seconds = 10;
+                }
             }
+               
 
             base.Update(gameTime);
         }
@@ -123,16 +130,9 @@ namespace Monogame_Topic_4___Time_and_Sound
                 _spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
             }
 
-            else if (!exploded && disabled && !greenWireCut)
+            else if (!exploded && disabled)
             {
                 _spriteBatch.Draw(bombRedWireCutTexture, bombRect, Color.White);
-                _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);
-                _spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
-            }
-
-            else if (greenWireCut == true && !exploded && !disabled)
-            {
-                _spriteBatch.Draw(bombGreenWireCutTexture, bombRect, Color.White);
                 _spriteBatch.DrawString(bombFont, (10 - seconds).ToString("0:00"), new Vector2(270, 200), Color.Black);
                 _spriteBatch.Draw(pliersTexture, pliersRect, Color.White);
             }
