@@ -139,7 +139,6 @@ namespace Monogame_Topic_4___Time_and_Sound
 
             else
             {
-                
                 _spriteBatch.Draw(explosionTexture, explosionRect, Color.White);
             }
 
